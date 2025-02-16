@@ -1,11 +1,12 @@
-// src/Login.js
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +20,10 @@ const Login = () => {
       // Handle response (e.g., store the JWT token)
       localStorage.setItem("token", response.data.token);
       alert("Login successful!");
+      
+      // Navigate to a different page (e.g., home/dashboard)
+      navigate("/dashboard"); // Replace with your desired route
+
     } catch (err) {
       setError("Invalid credentials. Please try again.");
     }
