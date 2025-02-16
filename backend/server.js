@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const http = require("http");
 const socketIo = require("socket.io");
 const authRoutes = require("./routes/auth");
-const User = require("./models/User"); 
+const UserRoutes = require("./routes/userRoutes");
 
 const app = express();
 const server = http.createServer(app);
@@ -17,11 +17,12 @@ const io = socketIo(server, {
 });
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:3000", // Allow requests from the React app
+  origin: "http://localhost:3000", 
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
 app.use("/api", authRoutes);
+app.use("/api/users", UserRoutes);
 
 
 // MongoDB connection

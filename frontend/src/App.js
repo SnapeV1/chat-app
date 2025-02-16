@@ -10,7 +10,7 @@ function App() {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <Router>
+    <Router futureFlags={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <div className="App">
         <h1>Chat App</h1>
         <Routes>
