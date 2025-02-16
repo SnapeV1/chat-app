@@ -16,9 +16,13 @@ const io = socketIo(server, {
   }
 });
 app.use(express.json());
-
+app.use(cors({
+  origin: "http://localhost:3000", // Allow requests from the React app
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 app.use("/api", authRoutes);
-app.use(cors());
+
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
